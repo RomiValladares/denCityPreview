@@ -1,0 +1,13 @@
+/** Your theme modifications here **/
+#div-static-tags .tm-tag .tm-tag-remove {
+display:none;
+}
+
+#location-list {
+	height:203px;
+	overflow-y:scroll;
+}
+
+#location-list a{
+	cursor:pointer;
+}
