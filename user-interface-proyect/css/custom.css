@@ -1,5 +1,5 @@
 /** Your theme modifications here **/
-#div-static-tags .tm-tag .tm-tag-remove {
+.static-tags .tm-tag .tm-tag-remove {
 display:none;
 }
 
@@ -10,4 +10,24 @@ display:none;
 
 #location-list a{
 	cursor:pointer;
+}
+
+#content #productMain .small-price {
+	font-size: 20px;
+	font-weight: 300;
+	text-align: center;
+}
+
+#content #productMain .main-price {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+tfoot > tr > td {
+	font-weight: bold;
+}
+
+.top-margin {
+	margin-top:15px;
 }

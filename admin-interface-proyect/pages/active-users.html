@@ -1,127 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>denCity - Admin Dashboard</title>
-      <!-- Bootstrap Core CSS -->
-      <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!-- MetisMenu CSS -->
-      <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-      <link href="../dist/css/sb-admin-2-modified.css" rel="stylesheet">
-      <!-- Custom Fonts -->
-      <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <link href="../dist/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="../dist/css/timeseries-default.css" />
-      <link rel="stylesheet" href="../dist/css/timeseries-style.css" />
-   </head>
-   <body>
-      <div id="wrapper">
-         <!-- Navigation -->
-         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-               <a class="navbar-brand" href="index.html">denCity - Admin Dashboard</a>
-            </div>
-            <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-right">
-            </ul>
-            <!-- /.navbar-top-links -->
-            <div id="menu-sidebar" class="navbar-default sidebar" role="navigation">
-               <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-         </nav>
-         <!-- Page Content -->
-         <div id="page-wrapper">
-            <div class="row">
-               <div class="col-lg-12">
-                  <h1 class="page-header">Usuarios Activos</h1>
-               </div>
-               <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-               <div class="col-lg-8">
-                  <div class="panel panel-default">
-                     <div class="panel-body" style="padding:0">
-                        <div class="flot-chart">
-                           <div class="flot-chart-content timeseries" id="active-users-timeseries"></div>
-                        </div>
-                     </div>
-                     <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-               </div>
-               <div class="col-lg-4">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        Filtro Fechas
-                        <button class="btn btn-primary pull-right" type="button" style="margin-top:-8px;margin-right:-11px;" data-toggle="collapse" data-target="#attributes-panel-body" aria-expanded="true" aria-controls="attributes-panel-body">
-                        <i class="fa fa-list"></i>
-                        </button>
-                     </div>
-                     <div class="panel-body collapse in container-fluid" id="attributes-panel-body">
-                        <div class="row">
-                           <div class=" col-md-4">
-                              <label >Desde:</label>
-                           </div>
-                           <div class="input-group date col-md-8">
-                              <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                           </div>
-                        </div>
-                        <div class="row top-margin-row">
-                           <div class=" col-md-4">
-                              <label >Hasta:</label>
-                           </div>
-                           <div class="input-group date col-md-8">
-                              <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="panel panel-default" style="height: 265px;">
-                     <div class="panel-body container-fluid" style="height: 100%;">
-                        <div class="row" id="primary-attr-piechart" style="height: 100%;">
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- /#page-wrapper -->
-      </div>
-      <!-- /#wrapper -->
-      <!-- jQuery -->
-      <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-      <!-- Bootstrap Core JavaScript -->
-      <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <!-- Metis Menu Plugin JavaScript -->
-      <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-      <!-- Load d3.js and c3.js -->
-      <script src="../js/d3.min.js" charset="utf-8"></script>
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.1.0/lodash.min.js"></script>
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-      <script src="../js/timeseries.js"></script>
-      <!-- Custom Theme JavaScript -->
-      <script src="../dist/js/sb-admin-2.js"></script>
-      <script src="../dist/js/active-users.js"></script>
-   </body>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>denCity - Admin Dashboard</title>
+		<!-- Bootstrap Core CSS -->
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- MetisMenu CSS -->
+		<link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+		<link href="../dist/css/sb-admin-2-modified.css" rel="stylesheet">
+		<!-- Custom Fonts -->
+		<link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<link href="../dist/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
+		<link href="../js/nv.d3.css" rel="stylesheet">
+		<link href="../js/cal-heatmap.css" rel="stylesheet">
+		<link rel="stylesheet" href="../dist/css/timeseries-default.css" />
+		<link rel="stylesheet" href="../dist/css/timeseries-style.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<!-- Navigation -->
+			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">denCity - Admin Dashboard</a>
+				</div>
+				<!-- /.navbar-header -->
+				<ul class="nav navbar-top-links navbar-right">
+				</ul>
+				<!-- /.navbar-top-links -->
+				<div id="menu-sidebar" class="navbar-default sidebar" role="navigation">
+					<!-- /.sidebar-collapse -->
+				</div>
+				<!-- /.navbar-static-side -->
+			</nav>
+			<!-- Page Content -->
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Usuarios Activos</h1>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="panel panel-default">
+							<div class="panel-body" style="padding:0">
+								<div class="flot-chart">
+									<div class="flot-chart-content timeseries" id="active-users-timeseries" style="display:none"></div>
+									<div class="flot-chart-content timeseries" id="active-users-single-day">
+										<svg style="height:500px"></svg>
+									</div>
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+					<div class="col-lg-4">
+						
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingOne">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Resumen
+										</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+									<div class="panel-body">
+										<div id="month-heatmap"></div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingTwo">
+									<h4 class="panel-title">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											Fechas
+										</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+									<div class="panel-body">
+										<div class="container-fluid">
+											<div class="row top-margin-row">
+												<div class=" col-md-4">
+													<label >Desde:</label>
+												</div>
+												<div class="input-group date col-md-8">
+													<input id="input-from-time" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+												</div>
+											</div>
+											<div class="row top-margin-row">
+												<div class=" col-md-4">
+													<label >Hasta:</label>
+												</div>
+												
+												<div class="input-group date col-md-8">
+													<input id="input-to-time"  type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+												</div>
+											</div>
+											<div class="row top-margin-row">
+												<button id="btn-search-registered-users" type="submit" class="btn btn-primary pull-right"> <span class="fa fa-search" aria-hidden="true"></span></button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingThree">
+									<h4 class="panel-title">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+											Predictivos
+										</a>
+									</h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+									<div class="panel-body">
+										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- /#page-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+		<!-- jQuery -->
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+		<!-- Load d3.js and c3.js -->
+		<script src="../js/d3.min.js" charset="utf-8"></script>
+		<script src="../js/stream_layers.js" charset="utf-8"></script>
+		<script src="../js/nv.d3.min.js" charset="utf-8"></script>
+		<script src="../js/timeseries.js"></script>
+		<script src="../js/cal-heatmap.min.js"></script>
+		<!-- Custom Theme JavaScript -->
+		<script src="../dist/js/sb-admin-2.js"></script>
+		<script src="../dist/js/active-users.js"></script>
+	</body>
 </html>

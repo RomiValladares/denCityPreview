@@ -10,14 +10,13 @@ $( document ).ready(function() {
 
 function testAjax() {
 	var obj = {value:800, curency:{id:2, symbol:'c', name:'peso'}};
+
 	  $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/dencity/api/users/getSomethingWithFilterModel",
-        data: obj,
+        type: "GET",
+        url: "http://localhost:8080/dencity/api/users",
         contentType: "application/json",
-        dataType: "json",
         success: function(data){
-			console.log(data);
+			alert(data);
 		},
         failure: function(errMsg) {
             console.log(errMsg);

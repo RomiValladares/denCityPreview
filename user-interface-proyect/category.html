@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand home" href="index.html" >
-                    <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
+                    <img src="img/logo.png" alt="denCity logo" class="hidden-xs">
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
@@ -187,11 +187,11 @@
                                 <h3 class="panel-title">Filtrando por:</h3>
                             </div>
                             <div class="panel-body" >
-                                <div id="div-static-tags" >
+                                <div id="div-static-tags" class="static-tags" >
                                     <input type="text" name="tags" style="display:none" class="tm-input" id="hidden-tags-input"/>
                                 </div>
 								<hr class="col-md-10" style="margin-top:12px;margin-bottom:12px;" id="panel-tag-divider">
-                                <div id="div-filter-tags" >
+                                <div id="div-filter-tags"  class="static-tags" >
                                     <input type="text" name="tags" style="display:none" class="tm-input" id="hidden-filter-tags-input"/>
                                 </div>
                                 <hr class="col-md-10" style="margin-top:12px;margin-bottom:12px;">
@@ -227,9 +227,9 @@
                             <div class="panel-body">
                                 <form class="">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Desde" id="input-from-price"/>
+                                        <input class="form-control" placeholder="Desde" id="input-from-price"/>
                                         <span class="input-group-addon">-</span>
-                                        <input type="text" class="form-control" placeholder="Hasta" id="input-to-price"/>
+                                        <input class="form-control" placeholder="Hasta" id="input-to-price"/>
                                     </div>
                                     <div class=" form-group checkbox">
                                         <label>
@@ -245,12 +245,12 @@
                             </div>
                             <div class="panel-body">
                                 <div class="input-group col-lg-12">
-                                    <input type="text" class="form-control" aria-label="...">
+                                    <input id="input-room-quantity" type="text" class="form-control" aria-label="...">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Habitación <span class="caret"></span></button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#">Dormitorio(s)</a></li>
-                                            <li><a href="#">Baño(s)</a></li>
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="selection">Habitación</span><span class="caret"></span></button>
+                                        <ul id="menu-rooms" class="dropdown-menu dropdown-menu-right">
+                                            <li><a data-value="Dormitorio(s)">Dormitorio(s)</a></li>
+                                            <li><a data-value="Baño(s)">Baño(s)</a></li>
                                         </ul>
                                     </div>
                                     <!-- /btn-group -->
@@ -264,20 +264,20 @@
                             </div>
                             <div class="panel-body">
                                 <form>
-                                    <div class="form-group">
+                                    <div id="div-condition-checkboxes" class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                            <input type="checkbox"> A estrenar
+                                            <input type="checkbox" data-name="A estrenar" data-code="1"> A estrenar
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                            <input type="checkbox"> Reciclado
+                                            <input type="checkbox" data-name="Reciclado" data-code="2"> Reciclado
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                            <input type="checkbox"> A reciclar
+                                            <input type="checkbox" data-name="A reciclar" data-code="3"> A reciclar
                                             </label>
                                         </div>
                                     </div>
@@ -467,6 +467,7 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/tagmanager.js"></script>
         <script src="js/bootstrap-list-filter.min.js"></script>
+		<script src="js/jquery.jstepper.min.js"></script>
         <script src="js/plugins/properties-grid.js"></script>
 		<script src="js/plugins/collapsible-panel.js"></script>
         <script src="js/front.js"></script>
