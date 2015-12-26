@@ -1,75 +1,193 @@
+var singleDayChart;//ref to nvd3 detail chart
+var cal;
 $(document).ready(function(){
-	//drawTimeseries();
-	var data = [{"key":"Stream0","values":[{"x":0,"y":0.6079351976987603},{"x":1,"y":0.9957659489812959},{"x":2,"y":1.5739802007911499},{"x":3,"y":1.9068015291726788},{"x":4,"y":2.2137392050836406},{"x":5,"y":2.0950551150105143},{"x":6,"y":1.6960732513901242},{"x":7,"y":1.2467291088801262},{"x":8,"y":0.828380514022442},{"x":9,"y":0.47352028949078684},{"x":10,"y":0.3331969451774099},{"x":11,"y":0.2548404787468062},{"x":12,"y":0.14386525260496055},{"x":13,"y":0.21421603492488728},{"x":14,"y":0.22731853845159367},{"x":15,"y":0.19079646056416144},{"x":16,"y":0.2712534555784697},{"x":17,"y":0.2988210921623923},{"x":18,"y":0.4532790780117789},{"x":19,"y":0.5599275010804632},{"x":20,"y":0.6417848036322363},{"x":21,"y":0.7929823615552389},{"x":22,"y":0.9683665484503019},{"x":23,"y":1.0893116037271457},{"x":24,"y":1.1354902672051266},{"x":25,"y":1.1723803056985165},{"x":26,"y":1.1517418674779571},{"x":27,"y":1.1466502341053688},{"x":28,"y":1.0169467208617442},{"x":29,"y":0.9024088495370068},{"x":30,"y":0.7979625219590636},{"x":31,"y":0.6309002244541563},{"x":32,"y":0.47998173018572277},{"x":33,"y":0.3726031965936241},{"x":34,"y":0.3466784253439533},{"x":35,"y":0.21890544683494156},{"x":36,"y":0.2094742329024429},{"x":37,"y":0.2403449557525974},{"x":38,"y":0.2045528473983729},{"x":39,"y":0.13356248771151133},{"x":40,"y":0.19082171072587853},{"x":41,"y":0.1649280330108802},{"x":42,"y":0.13543352410125595},{"x":43,"y":0.1645665912577521}]}];
+	
 	nv.addGraph(function() {
-		var chart = nv.models.lineWithFocusChart();
+		singleDayChart = nv.models.lineWithFocusChart();
+		var data = [];
+		var tickMultiFormat = d3.time.format.multi([
+            ["%-I:%M%p", function(d) { return d.getMinutes(); }], // not the beginning of the hour
+            ["%-I%p", function(d) { return d.getHours(); }], // not midnight
+            ["%b %-d", function(d) { return d.getDate() != 1; }], // not the first of the month
+            ["%b %-d", function(d) { return d.getMonth(); }], // not Jan 1st
+            ["%Y", function() { return true; }]
+		]);
+        singleDayChart.xAxis
+		.tickPadding(10)
+		.tickFormat(function (d) { return tickMultiFormat(new Date(d)); })
+        ;
+		console.log("LINE CHART DATA "+JSON.stringify(data));
+		singleDayChart.yAxis
+		.tickFormat(d3.format("d"));
 		
-		chart.xAxis
-		.tickFormat(d3.format(',f'));
+		singleDayChart.y2Axis
+		.tickFormat(d3.format("d"));
 		
-		chart.yAxis
-		.tickFormat(d3.format(',.2f'));
-		
-		chart.y2Axis
-		.tickFormat(d3.format(',.2f'));
+		singleDayChart.x2Axis
+		.tickPadding(10)
+		.tickFormat(function (d) { return tickMultiFormat(new Date(d)); })
+        ;
 		
 		d3.select('#active-users-single-day svg')
 		.datum(data)
 		.transition().duration(500)
-		.call(chart);
+		.call(singleDayChart);
 		
-		nv.utils.windowResize(chart.update);
+		nv.utils.windowResize(singleDayChart.update);
 		
-		return chart;
+		return singleDayChart;
 	});
 	
-	var cal = new CalHeatMap();
-	cal.init({
-		itemSelector: "#month-heatmap",
-		domain: "month",
-		subDomain: "x_day",
-		cellSize: 20,
-		subDomainTextFormat: "%d",
-		range: 1,
-		displayLegend: false
+	//so that the charts redraw
+	$("#main-active-users-charts").on('shown.bs.collapse', function(){
+		window.dispatchEvent(new Event('resize'));
 	});
+	drawTimeseries();
+	
+	
+	
+	
+	
+	$("#hidden-days-tags-input").tagsManager({tagClass:"tm-tag-info", tagsContainer:"#div-days-tags"});
+	
+	$("#collapseTwo").panelUtils({type:"date", idPrefix:"active-users"});
+	$("#active-users-btn-search").click(function() {
+		getActiveUsersChart();
+	});
+	
+	getActiveUsersChart();
 });
-/**************************************
-	* Simple test data generator
-*/
-
-function testData() {
-	return stream_layers(3,128,.1).map(function(data, i) {
-		return { 
-			key: 'Stream' + i,
-			values: data
-		};
+function getActiveUsersChart() {
+	var filters = getActiveUsersFilters();
+	$.blockUI({
+		css : {
+			border : 'none',
+			padding : '15px',
+			backgroundColor : '#000',
+			'-webkit-border-radius' : '10px',
+			'-moz-border-radius' : '10px',
+			opacity : .5,
+			color : '#fff'
+		},
+		message : "cargando..."
+	});
+	$
+	.ajax({
+		type : "POST",
+		url : "http://localhost:8080/dencity/api/adminmetrics/activeusersmetrics",
+		contentType : "application/json",
+		data : JSON.stringify(filters),
+		success : function(data) {
+			$.unblockUI();
+			console.log("server response: "+JSON.stringify(data));
+			if(data !=null && data.data !=null){
+				setHeatmapData(data.data.summary.data);
+				}else{
+				setHeatmapData({});
+			}
+		},
+		failure : function(errMsg) {
+			$.unblockUI();
+			alert(errMsg);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$.unblockUI();
+			alert(jqXHR + textStatus + errorThrown);
+		}
 	});
 }
 
-var drawTimeseries = function() {
+function setHeatmapData(caldata){
+	if(cal == undefined){		
+		console.log("CALENDAR DATA: "+JSON.stringify(caldata));
+		cal = new CalHeatMap();
+		cal.init({
+			itemSelector: "#month-heatmap",
+			domain: "month",
+			subDomain: "x_day",
+			data:caldata,
+			start: new Date(),
+			cellSize: 30,
+			range: 1,
+			previousSelector: "#month-heatmap-prev-btn",
+			nextSelector: "#month-heatmap-next-btn",
+			domainLabelFormat: function(date) {
+				moment.lang("es");
+				return moment(date).format("MMMM").toUpperCase();
+			},
+			subDomainDateFormat:  function(date) {
+				return moment(date).format("LL"); // Use moment.js library to translate date
+			},
+			subDomainTextFormat: "%d",
+			subDomainTitleFormat: {
+				empty: "Sin datos para el {date}",
+				filled: " {count} visitas para el {date}"
+			},
+			displayLegend: false
+		});
+	}else{
+		cal.update(caldata);
+	}
+}
+
+function getActiveUsersFilters() {
+	var fromTime = $("#active-users-input-from-time").datepicker("getDate");
+	var toTime = $("#active-users-input-to-time").datepicker("getDate");
+	
+	return {
+		fromTime : fromTime,
+		toTime : toTime
+	};
+}
+function dummyCalData() {
+	var calData = {};
+	$.each(globalData, function(i, val){
+		var d =new Date(val.value);
+		
+		var secEpoch=Math.floor(d.getTime() / 1000);
+		calData[""+secEpoch] = 1;
+	});
+	return calData;
+}
+
+var drawTimeseries = function(caldata) {
 	var domEl = 'timeseries';
 	
-	var todayAtMidday = new Date();
-	todayAtMidday.setHours(12); 
-	console.log(todayAtMidday);
+	var brushEnabled = false;
+	globalData=dummyData();
 	
-	var data = [];
-	//llena 10 dias hasta hoy
-	for(var i = 10;  i>=0; i--) {
+	console.log("TIMESERIES DATA:"+JSON.stringify(globalData));
+	
+	timeseries(domEl, globalData, brushEnabled, "%d/%m/%y", {width: parseFloat($(".timeseries").css("width")) - 30, height:parseFloat($(".timeseries").css("height")), margin:null});
+	
+	$("#active-users-timeseries .x.axis text").unbind("click").bind("click", function(){
+		$("#hidden-days-tags-input").tagsManager('pushTag', $( this ).text());
+		$("#div-days-tags .tm-tag").addClass("pull-right");
+		var data =d3.select('#active-users-single-day svg').datum();
+		data.push({key:$( this ).text(),"values":[{"x":1425096000000,"y":6},{"x":1425096600000,"y":2}]});
+		console.log(JSON.stringify(d3.select('#active-users-single-day svg').datum()));
+		d3.select('#active-users-single-day svg')
+		.datum(data)
+		.transition().duration(500)
+		.call(singleDayChart);
+		
+		nv.utils.windowResize(singleDayChart.update);
+	});
+}
+
+function dummyData() {
+	var data= [];
+	//llena 6 dias hasta hoy
+	for(var i = 5;  i>=0; i--) {
 		var date = new Date();
 		var prevDate = new Date();
 		prevDate.setDate(date.getDate() - i);
 		
-		var nOfVisitsDay = Math.floor(Math.random() * (50 - 6 + 1)) + 6;
+		var nOfVisitsDay = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
 		for(var b = 0;  b <= nOfVisitsDay; b++){
 			prevDate.setHours(Math.floor(Math.random() * (23 - 1 + 1)) + 1);
-			console.log(prevDate.toLocaleString());
-			data.push({'value': new Date(prevDate)});
+			data.push({'value': new Date(prevDate).getTime()});
 		}
 	}
-	
-	var brushEnabled = false;
-	
-	timeseries(domEl, data, brushEnabled, "%d/%m/%y", {width: parseFloat($(".timeseries").css("width")) - 30, height:parseFloat($(".timeseries").css("height")), margin:null});
+	return data;
 }

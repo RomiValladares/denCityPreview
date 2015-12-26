@@ -27,6 +27,7 @@
 		<link href="../js/cal-heatmap.css" rel="stylesheet">
 		<link rel="stylesheet" href="../dist/css/timeseries-default.css" />
 		<link rel="stylesheet" href="../dist/css/timeseries-style.css" />
+		<link rel="stylesheet" href="../dist/css/tagmanager.css" />
 	</head>
 	<body>
 		<div id="wrapper">
@@ -61,19 +62,46 @@
 				<!-- /.row -->
 				<div class="row">
 					<div class="col-lg-8">
-						<div class="panel panel-default">
-							<div class="panel-body" style="padding:0">
-								<div class="flot-chart">
-									<div class="flot-chart-content timeseries" id="active-users-timeseries" style="display:none"></div>
-									<div class="flot-chart-content timeseries" id="active-users-single-day">
-										<svg style="height:500px"></svg>
+						<div class="panel-group" id="main-active-users-charts" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="chart-heading-one">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#main-active-users-charts" href="#chart-collapse-one" aria-expanded="false" aria-controls="chart-collapse-one">
+											Días
+										</a>
+									</h4>
+								</div>
+								<div id="chart-collapse-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chart-heading-one">
+									<div class="panel-body">
+										<div class="flot-chart-content timeseries" id="active-users-timeseries" ></div>
 									</div>
 								</div>
 							</div>
-							<!-- /.panel-body -->
+							<div class="panel panel-default">
+								<div class="panel-heading clearfix " role="tab" id="chart-heading-two">
+									<div class="col-md-4" >
+										<h4 class="panel-title">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#main-active-users-charts" href="#chart-collapse-two" aria-expanded="true" aria-controls="chart-collapse-two">
+												Día
+											</a>
+										</h4>
+									</div>
+									<div class="col-md-8 pull-right"  id="div-days-tags" >
+									</div>
+									<input type="text" name="tags" style="display:none" class="tm-input" id="hidden-days-tags-input"/>
+								</div>
+								<div id="chart-collapse-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chart-heading-two">
+									<div class="panel-body flot-chart-content" id="active-users-single-day">
+										<svg style="min-height:400px"></svg>
+										
+									</div>
+								</div>
+							</div>
 						</div>
-						<!-- /.panel -->
+						<!-- /.panel-body -->
 					</div>
+					<!-- /.panel -->
+					
 					<div class="col-lg-4">
 						
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -87,7 +115,16 @@
 								</div>
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 									<div class="panel-body">
-										<div id="month-heatmap"></div>
+										<div class="container-fluid">
+											<div class="row">
+												<button id="month-heatmap-prev-btn" class="btn-cal"><i class="fa fa-chevron-left"></i></button>
+												<button id="month-heatmap-next-btn" class="btn-cal"><i class="fa fa-chevron-right"></i></button>
+											</div>
+											<div class="row top-margin-row">
+												<div id="month-heatmap" class="text-center">
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -100,30 +137,7 @@
 									</h4>
 								</div>
 								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									<div class="panel-body">
-										<div class="container-fluid">
-											<div class="row top-margin-row">
-												<div class=" col-md-4">
-													<label >Desde:</label>
-												</div>
-												<div class="input-group date col-md-8">
-													<input id="input-from-time" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-												</div>
-											</div>
-											<div class="row top-margin-row">
-												<div class=" col-md-4">
-													<label >Hasta:</label>
-												</div>
-												
-												<div class="input-group date col-md-8">
-													<input id="input-to-time"  type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-												</div>
-											</div>
-											<div class="row top-margin-row">
-												<button id="btn-search-registered-users" type="submit" class="btn btn-primary pull-right"> <span class="fa fa-search" aria-hidden="true"></span></button>
-											</div>
-										</div>
-									</div>
+
 								</div>
 							</div>
 							<div class="panel panel-default">
@@ -141,27 +155,33 @@
 								</div>
 							</div>
 						</div>
-						
 					</div>
 				</div>
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
 		<!-- /#wrapper -->
-		<!-- jQuery -->
-		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap Core JavaScript -->
-		<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- Metis Menu Plugin JavaScript -->
-		<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-		<!-- Load d3.js and c3.js -->
-		<script src="../js/d3.min.js" charset="utf-8"></script>
-		<script src="../js/stream_layers.js" charset="utf-8"></script>
-		<script src="../js/nv.d3.min.js" charset="utf-8"></script>
-		<script src="../js/timeseries.js"></script>
-		<script src="../js/cal-heatmap.min.js"></script>
-		<!-- Custom Theme JavaScript -->
-		<script src="../dist/js/sb-admin-2.js"></script>
-		<script src="../dist/js/active-users.js"></script>
+	<!-- jQuery -->
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../js/jquery.blockUI.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+	<!-- Load d3.js and c3.js -->
+	<script src="../js/d3.min.js" charset="utf-8"></script>
+	<script src="../js/stream_layers.js" charset="utf-8"></script>
+	
+	<script src="../js/nv.d3.min.js" charset="utf-8"></script>
+	<script src="../js/lodash.min.js"></script>
+	<script src="../js/moment.min.js"></script>
+	<script src="../js/timeseries.js"></script>
+	<script src="../js/tagmanager.js"></script>
+	<script src="../js/cal-heatmap.min.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="../dist/js/sb-admin-2.js"></script>
+	<script src="../js/bootstrap-datepicker.min.js"></script>
+	<script src="../dist/js/panel-utils.js"></script>
+	<script src="../dist/js/active-users.js"></script>
 	</body>
-</html>
+	</html>																															

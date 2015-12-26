@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dencity</title>
+    <meta content="Dencity,webpage" name="keywords">
+    <meta content="Dencity Web Page" name="description">
+    
+    <!-- Fav -->
+	<link href="img/ico/favicon.png" rel="shortcut icon">
+    
+    <!-- CSS -->
+       
+    <!-- Bootstrap & FontAwesome & Entypo CSS -->
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <!--[if IE 7]><link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+    <link type="text/css" rel="stylesheet" href="css/font-entypo.css">    
+
+    <!-- Fonts CSS -->
+    <link type="text/css" rel="stylesheet" href="css/fonts.css">
+
+    <!-- Style CSS -->
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+
+    <!-- Head SCRIPTS -->
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+	<script type="text/javascript" src="js/modernizr.js" type="text/javascript"></script> 
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/html5shiv.js"></script>
+      <script type="text/javascript" src="js/respond.min.js"></script>     
+    <![endif]-->
+    
+</head>    
+<body>     
+
+<div class="wrapper">
+	<header id="header">
+		<a class="logo" href="">Dencity</a>
+		<div class="header_right">
+			<div class="signin">
+				<form id="login_form" name="login_form" action="#" method="POST">
+				<input class="name" type="text" class="required" placeHolder="Usuario" />
+				<input class="password" type="password" class="required" autocomplete="off" placeHolder="Contraseña" />
+				<button name="submit-register" id="submit-register" type="submit" class="btn">Enviar</button>
+				</form>
+			</div>
+			<div class="usercp">
+				<span class="avatar">
+					<img alt="example image" src="http://i.imgur.com/IfsmyAn.jpg">
+				</span>
+				<span class="name">
+					<span class="text"></span> <i class="fa fa-caret-down fa-fw"></i> 
+				</span>
+				<div class="user_navbar">
+				<ul>
+					<li rel="user_profile"> <a href="#"> <div class="menu-icon"><i class=" fa fa-user"></i></div> <div class="menu-text">Ver perfil</div> </a> </li>
+					<li rel="new_property"> <a href="#"> <div class="menu-icon"><i class=" fa fa-plus"></i></div> <div class="menu-text">Agregar propiedad</div> </a> </li>
+					<li rel="logout"> <a href="#"> <div class="menu-icon"><i class=" fa fa-key"></i></div> <div class="menu-text">Cerrar sesión</div> </a> </li>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+   
+	<div class="content_map" id="map"></div>
+	
+	<div class="widget new_property">
+		<div class="close">x</div>
+        <div class="title">
+			<span class="menu-icon"><i class="fa fa-bar-chart-o"></i></span>
+			<div class="text">Agregar propiedad</div>
+			<div class="clr"></div>
+		</div>
+		<div class="widget_content">
+		<form id="new_property" role="form" action="#"  novalidate="novalidate">
+			<label class="control-label">Nombre <span class="asterisk">*</span></label>
+			<input type="text" required="" name="name" class="name required" placeholder="ej: Casa a estrenar en Pocitos">
+
+			<label class="control-label">Descripción <span class="asterisk">*</span></label>
+			<input type="text" name="description" required="" class="description required" placeholder="Breve descripción de la propiedad">
+
+			<label class="control-label">Dirección <span class="asterisk">*</span></label>
+			<input type="text" name="address" required="" class="address required" placeholder="ej: Bvar España 2023">
+
+			<label class="control-label">Barrio <span class="asterisk">*</span></label>
+			<div class="select">
+			<select name="neighborhood" class="neighborhood required" placeholder="Ciudad Vieja">
+				<option value="Ciudad Vieja">Ciudad Vieja</option>
+				<option value="Centro">Centro</option>
+				<option value="Pocitos">Pocitos</option>
+				<option value="La Figurita">La Figurita</option>
+			</select>
+			</div>
+			<div class="clr"></div>
+
+			<label class="control-label">Área <span class="asterisk">*</span></label>
+			<input type="text" name="area" class="area required" placeholder="50">
+			
+			<label class="control-label">Renta mensual <span class="asterisk">*</span></label>
+			<input type="number" name="monthly-rent" min="0" class="monthly-rent required" placeholder="10000">
+
+			<label class="control-label">Dormitorios <span class="asterisk">*</span></label>
+			<input type="number" name="num-bedrooms" min="0" class="num-bedrooms required" placeholder="1">
+
+			<label class="control-label">Baños <span class="asterisk">*</span></label>
+			<input type="number" name="num-bathrooms" min="0" class="num-bathrooms required" placeholder="1">
+
+			<div class="text">Haga click en la posición del mapa donde se encuentra la propiedad</div>
+		
+			<label class="control-label">Latitud <span class="asterisk">*</span></label>
+			<input type="text" name="geoLatitude" required="" class="geoLatitude required" placeholder="-44.23123">
+			
+			<label class="control-label">Longitud <span class="asterisk">*</span></label>
+			<input type="text" name="geoLongitude" required="" class="geoLongitude required" placeholder="28.1355">
+			<button name="submit-register" id="submit-register" type="submit" class="btn">Enviar</button>
+		</form>
+		</div>
+    </div>
+	
+	<div class="widget user_profile">
+		<div class="close">x</div>
+        <div class="title">
+			<span class="menu-icon"><i class="fa fa-user"></i></span>
+			<div class="text">Perfil</div>
+			<div class="clr"></div>
+		</div>
+		<div class="widget_content">
+			<div class="left">
+			<label class="control-label">Nombre</label>
+			<div class="name"></div>
+			
+			<label class="control-label">Email</label>
+			<div class="email"></div>
+			
+			<label class="control-label">Fecha de nacimiento</label>
+			<div class="date-of-birth"></div>
+			</div>
+			<div class="right">
+				<div class="image">
+					<img alt="example image" src="http://i.imgur.com/IfsmyAn.jpg"> 
+				</div>
+			</div>
+			<div class="clr"></div>
+			<div class="line"></div>
+			<div class="subtitle">Listado de propiedades</div>
+			<ul class="property_list"></ul>
+		</div>
+	</div>
+	
+	<div class="widget property">
+		<div class="close">x</div>
+        <div class="title">
+			<span class="menu-icon"><i class="fa fa-home"></i></span>
+			<div class="text">Propiedad</div>
+			<div class="clr"></div>
+		</div>
+		<div class="widget_content">
+			<label class="control-label">Nombre</label>
+			<div class="name"></div>
+			
+			<label class="control-label">Descripción</label>
+			<div class="description"></div>
+			
+			<label class="control-label">Dirección</label>
+			<div class="address"></div>
+			
+			<label class="control-label">Latitud</label>
+			<div class="geoLatitude"></div>
+			
+			<label class="control-label">Longitud</label>
+			<div class="geoLongitude"></div>
+			
+			<label class="control-label">Área</label>
+			<div class="area"></div>
+		</div>
+	</div>
+	<div class="services">
+		<div class="text">Servicios: </div>
+		<ul>
+			<li><div rel="food" class="img"></div></li>
+			<li><div rel="bakery" class="img"></div></li>
+			<li><div rel="school" class="img"></div></li>
+			<li><div rel="doctor" class="img"></div></li>
+			<li><div rel="transport" class="img"></div></li>
+			<li><div rel="kinder" class="img"></div></li>
+		</ul>
+	</div>
+</div>
+
+<!-- Javascript =============================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script type="text/javascript" src="js/jquery.js" type="text/javascript"></script> 
+<!--[if lt IE 9]>
+  <script type="text/javascript" src="js/excanvas.js"></script>      
+<![endif]-->
+<script type="text/javascript" src="js/jquery.validate.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="js/interact.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uE3gN5vVD_sKfyHXoE42MeRCp2pHyHk&libraries=places"></script>
+<script type="text/javascript" src="js/google-maps.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/main.js" type="text/javascript"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+</body>
+</html>

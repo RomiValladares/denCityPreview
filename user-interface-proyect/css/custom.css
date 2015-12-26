@@ -1,6 +1,6 @@
 /** Your theme modifications here **/
 .static-tags .tm-tag .tm-tag-remove {
-display:none;
+	display:none;
 }
 
 #location-list {
@@ -30,4 +30,122 @@ tfoot > tr > td {
 
 .top-margin {
 	margin-top:15px;
+}
+
+#thumbs > div, #thumbs a {
+	min-height:80px;
+}
+
+#div-main-photo-tags {
+	min-height:35px;
+}
+
+#productMain .taggd-wrapper{
+	width:500px; height:360px !important;
+}
+
+iframe {
+	min-height:300px;
+	width:100%;
+	height:auto;
+}
+
+/* IMAGE TAGGD*/
+/*copied from zillow digs*/
+.taggd-wrapper span.taggd-item {
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-color: rgba(255, 255, 255, 0.6);
+	background-image: none;
+	background-origin: padding-box;
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	background-size: auto auto;
+	border-bottom-left-radius: 19px;
+	border-bottom-right-radius: 19px;
+	border-top-left-radius: 19px;
+	border-top-right-radius: 19px;
+	box-shadow: #454545 0px 0px 0px 1.5px;
+	box-sizing: border-box;
+	color: #0074E4;
+	cursor: pointer;
+	display: block;
+	font-family: "Open Sans",open-sans,Arial,"Helvetica Neue",sans-serif;
+	font-size: 15px;
+	height: 38px;
+	left: 555.667px;
+	letter-spacing: normal;
+	line-height: 22.5px;
+	margin-left: -19px;
+	margin-top: -19px;
+	opacity: 1;
+	outline-color: #0074E4;
+	outline-style: none;
+	outline-width: 0px;
+	pointer-events: auto;
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+	text-decoration-color: #0074E4;
+	text-decoration-line: none;
+	text-decoration-style: solid;
+	text-rendering: auto;
+	top: 14.3167px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+	transition-delay: 0s;
+	transition-duration: 0.25s;
+	transition-propertytransformtransition-timing-function: cubic-bezier(0, 0, 0.58, 1);
+	width: 38px;
+	word-spacing: 0px;
+	z-index: 10007;
+	
+}
+
+.taggd-wrapper span.taggd-item:hover {
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-color: rgba(85, 164, 255, 0.6);
+	background-image: none;
+	background-origin: padding-box;
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	background-size: auto auto;
+	border-bottom-left-radius: 19px;
+	border-bottom-right-radius: 19px;
+	border-top-left-radius: 19px;
+	border-top-right-radius: 19px;
+	box-shadow: #FFF 0px 0px 0px 1.5px;
+	box-sizing: border-box;
+	color: #7BC0FF;
+	cursor: pointer;
+	display: block;
+	font-family: "Open Sans",open-sans,Arial,"Helvetica Neue",sans-serif;
+	font-size: 15px;
+	height: 38px;
+	left: 555.667px;
+	letter-spacing: normal;
+	line-height: 22.5px;
+	margin-left: -19px;
+	margin-top: -19px;
+	opacity: 1;
+	outline-color: #7BC0FF;
+	outline-style: none;
+	outline-width: 0px;
+	pointer-events: auto;
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+	text-decoration-color: #7BC0FF;
+	text-decoration-line: none;
+	text-decoration-style: solid;
+	text-rendering: auto;
+	top: 14.3167px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+	transition-delay: 0s;
+	transition-duration: 0.25s;
+	transition-propertytransformtransition-timing-function: cubic-bezier(0, 0, 0.58, 1);
+	width: 38px;
+	word-spacing: 0px;
+	z-index: 10007;
+	
 }

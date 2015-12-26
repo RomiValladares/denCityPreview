@@ -16,6 +16,7 @@ $(document).ready(function() {
 		getRegisteredUsersChart();
 	});
 	getRegisteredUsersChart();
+
 	// buildCategoriesMenu();
 });
 
@@ -116,7 +117,7 @@ var drawRegisteredUsersChart = function(data) {
 // sets the new data on the right panel
 function loadRightPanel(data) {
 	if (data != null && data.data != null && data.data.summary != null) {
-		$("#span-registered-total").text(data.data.summary.total);
+		$("#span-registered-total").text(5);
 		$("#span-peak-day").text(data.data.summary.peak);
 	} else {
 		$("#span-registered-total").text("-");

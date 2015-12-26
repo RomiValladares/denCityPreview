@@ -23,6 +23,7 @@
         <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
+		<link href="css/taggd.css" rel="stylesheet">
         <script src="js/respond.min.js"></script>
         <link rel="shortcut icon" href="favicon.png">
 	</head>
@@ -192,26 +193,26 @@
 							
 							<div class="row" id="productMain">
 								<div class="col-sm-6">
-									<div id="mainImage" >
-										<img src="img/no-image.jpg" alt="" class="img-responsive">
+									<div id="mainImage" class="imgLiquidFill imgLiquid"  style="width:500px; height:360px;">
+										<img src="img/property1.jpg" alt="" class="img-responsive">
 									</div>
 									<div class="row text-center static-tags top-margin" id="div-main-photo-tags">
 										<input type="text" name="tags" style="display:none" class="tm-input" id="hidden-main-photo-tags-input"/>
 									</div>
 									<div class="row top-margin" id="thumbs">
 										<div class="col-xs-4">
-											<a href="img/no-image.jpg" class="thumb">
+											<a href="img/property2.jpg" class="thumb imgLiquidFill imgLiquid">
+												<img src="img/property2.jpg" alt="" class="img-responsive"> 
+											</a>
+										</div>
+										<div class="col-xs-4">
+											<a href="img/no-image.jpg" class="thumb imgLiquidFill imgLiquid">
 												<img src="img/no-image.jpg" alt="" class="img-responsive">
 											</a>
 										</div>
 										<div class="col-xs-4">
-											<a href="img/no-image.jpg" class="thumb">
-												<img src="img/no-image.jpg" alt="" class="img-responsive">
-											</a>
-										</div>
-										<div class="col-xs-4">
-											<a href="img/no-image.jpg" class="thumb">
-												<img src="img/no-image.jpg" alt="" class="img-responsive">
+											<a href="img/property1.jpg" class="thumb imgLiquidFill imgLiquid">
+												<img src="img/property1.jpg" alt="" class="img-responsive"> 
 											</a>
 										</div>
 									</div>
@@ -230,15 +231,15 @@
 											<div class="col-md-6" ><p class="small-price" style="text-align:left">50 m2</p></div>
 										</div>
 										<div>
-											<p class="text-center buttons">
-												<a class="btn btn-success"><i class="fa fa-map-marker"></i></a>
-												<a class="btn btn-default"><i class="fa fa-star-o"></i></a>
-												<a class="btn btn-primary"><i class="fa fa-envelope"></i></a>
-											</p>
+										<p class="text-center buttons">
+											<a class="btn btn-success"><i class="fa fa-map-marker"></i></a>
+											<a class="btn btn-default"><i class="fa fa-star-o"></i></a>
+											<a class="btn btn-primary"><i class="fa fa-envelope"></i></a>
+										</p>
 										</div>
-									</div>
-									
-									
+										</div>
+										
+										
 								</div>
 								
 							</div>
@@ -322,6 +323,7 @@
 										<li>Aceptan mascotas</li>
 									</ul>
 									<hr>
+									<div id="map-iframe-container"></div>
 									<div class="social">
 										<h4>Compartilo</h4>
 										<p>
@@ -405,9 +407,12 @@
 			<script src="js/modernizr.js"></script>
 			<script src="js/bootstrap-hover-dropdown.js"></script>
 			<script src="js/owl.carousel.min.js"></script>
-			<script src="js/front.js"></script>
+			<!--<script src="js/front.js"></script> -->
 			<script src="js/tagmanager.js"></script>
+			<script src="js/jquery.taggd.min.js"></script>
+			<script src="js/imgLiquid-min.js"></script>
 			<script src="js/property-detail.js"></script>
+			
 			
 			
 			
@@ -415,4 +420,4 @@
 			
 		</body>
 		
-	</html>																										
+	</html>																											
